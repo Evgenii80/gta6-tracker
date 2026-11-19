@@ -20,6 +20,13 @@ jobs:
       - name: Build news
         run: python build.py
 
+      - name: Restore index.html from base64
+        run: |
+          if [ -f data/index_b64.txt ]; then
+            base64 -d data/index_b64.txt > index.html
+            rm data/index_b64.txt
+          fi
+
       - name: Commit update
         run: |
           git config user.name "site-bot"
