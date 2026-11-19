@@ -3,30 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Все достижения и трофеи GTA 6 — список и как получить</title>
-<meta name="description" content="Достижения и трофеи GTA 6: подтверждённые, ожидаемые и легендарные из прошлых частей. Что нужно для платины в Vice City.">
+<title>Все достижения и трофеи GTA 6 — дорожная карта платины</title>
+<meta name="description" content="Достижения и трофеи GTA 6: интерактивная дорожная карта платины — этапы от старта до 100%, что делать на каждом. Подтверждённые и ожидаемые трофеи.">
 <link rel="canonical" href="https://gta-6-gaid.2bd.net/dostizheniya.html">
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{ --neon:#ff2e97; --violet:#8a5cff; --cyan:#2de9ff; --line:rgba(138,92,255,.35); }
+  :root{ --neon:#ff2e97; --violet:#8a5cff; --cyan:#2de9ff; --orange:#ff9e4f; --line:rgba(138,92,255,.35); }
   body{margin:0; font-family:'Manrope',system-ui,sans-serif; color:#f2ecff; background:#120a24; line-height:1.6}
-  .wrap{max-width:800px; margin:0 auto; padding:0 20px}
-  header{padding:40px 0 24px; text-align:center; background:linear-gradient(180deg,#2a0f4d,#7a1a68 80%,#e63d7f); margin-bottom:34px}
+  .wrap{max-width:860px; margin:0 auto; padding:0 20px}
+  header{padding:36px 0 22px; text-align:center; background:linear-gradient(180deg,#2a0f4d,#7a1a68 80%,#e63d7f)}
   header .kick{font-family:'Russo One'; font-size:12px; letter-spacing:.3em; color:#ffe9a8; text-transform:uppercase}
-  h1{font-family:'Russo One'; font-size:clamp(24px,5vw,38px); margin:10px 0 0; text-shadow:0 0 18px rgba(255,46,151,.6)}
+  h1{font-family:'Russo One'; font-size:clamp(22px,5vw,36px); margin:10px 0 0; text-shadow:0 0 18px rgba(255,46,151,.6)}
+  nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:18px 0 6px}
+  nav a{color:#c9bcff; text-decoration:none; font-size:13px; font-weight:600; border:1px solid var(--line); border-radius:99px; padding:7px 14px}
+  nav a:hover{border-color:var(--neon); color:#fff}
+  nav a.on{background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff; border-color:transparent}
   h2{font-family:'Russo One'; font-size:21px; margin:34px 0 10px}
   .card{background:linear-gradient(180deg,#1c1139,#171030); border:1px solid var(--line); border-radius:14px; padding:18px; margin-bottom:14px}
   .card h3{margin:0 0 8px; font-size:15.5px; color:#ffe9a8}
   .card p{margin:0; font-size:14.5px; color:#b3a6d4}
   .tag{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:3px 9px; border-radius:99px; margin-bottom:8px; background:rgba(45,233,255,.1); color:var(--cyan)}
-  .tag.wait{background:rgba(255,158,79,.1); color:#ff9e4f}
+  .tag.wait{background:rgba(255,158,79,.1); color:var(--orange)}
   .tip{padding:12px 14px; border-radius:10px; background:rgba(45,233,255,.07); border:1px solid rgba(45,233,255,.25); font-size:13.5px; color:#9fd8e0; margin-top:12px}
-  nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:20px 0}
-  nav a{color:#c9bcff; text-decoration:none; font-size:13px; font-weight:600; border:1px solid var(--line); border-radius:99px; padding:7px 14px}
-  nav a:hover{border-color:var(--neon); color:#fff}
-  nav a.on{background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff; border-color:transparent}
   footer{border-top:1px solid var(--line); padding:24px 0 40px; font-size:12.5px; color:#8f80b5; text-align:center}
   a.btn{display:inline-block; padding:10px 20px; border-radius:12px; font-weight:800; font-size:14px; text-decoration:none; background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff}
+
+  /* roadmap */
+  .road{display:flex; gap:0; margin:20px 0 0; align-items:stretch; overflow-x:auto; padding-bottom:6px}
+  .stage{flex:1; min-width:130px; text-align:center; position:relative; cursor:pointer; padding:12px 6px}
+  .stage .dot{width:46px; height:46px; margin:0 auto 8px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'Russo One'; font-size:18px; color:#fff; background:#221344; border:2px solid var(--line); transition:all .2s}
+  .stage.active .dot, .stage:hover .dot{background:linear-gradient(120deg,#ff2e97,#8a5cff); box-shadow:0 0 22px rgba(255,46,151,.55); border-color:transparent}
+  .stage .lbl{font-size:12.5px; font-weight:700; color:#c9bcff}
+  .stage.active .lbl{color:#fff}
+  .stage:not(:last-child)::after{content:"→"; position:absolute; right:-8px; top:22px; color:var(--violet); font-size:15px; opacity:.7}
+  .detail{margin-top:14px; background:#221344; border:1px solid var(--line); border-radius:12px; padding:16px; font-size:14.5px; color:#d8cfee; min-height:100px}
+  .detail b{color:var(--cyan)}
+  .detail ul{margin:8px 0 0; padding-left:20px}
+  .detail li{margin-bottom:5px; color:#b3a6d4}
 </style>
 </head>
 <body>
@@ -42,15 +56,21 @@
     <a href="100-procent.html">🏁 100%</a>
     <a href="dostizheniya.html" class="on">🏆 Достижения</a>
     <a href="karty.html">🗺 Коллекции</a>
+    <a href="mashiny.html">🚗 Машины</a>
+    <a href="mashiny.html">🚗 Машины</a>
   </nav>
 
-  <p style="color:#a99cc9; font-size:14.5px">Полный список трофеев PSN/Xbox раскрывается в первые дни после релиза. Пока — что известно точно и чего ожидать, с оглядкой на традицию серии.</p>
+  <h2>🛣 Дорожная карта платины — клик по этапу</h2>
+  <div class="card">
+    <div class="road" id="road"></div>
+    <div class="detail" id="roadDetail"></div>
+  </div>
 
   <h2>Подтверждённые направления</h2>
   <div class="card">
     <span class="tag">подтверждено</span>
     <h3>🏅 Пройти кампанию — все 5 глав</h3>
-    <p>Классическое «сюжетное» достижение. Помни: миссии нельзя переигрывать — сейвы перед главами обязательны.</p>
+    <p>Классическое «сюжетное» достижение. Миссии нельзя переигрывать — сейвы перед главами обязательны.</p>
   </div>
   <div class="card">
     <span class="tag">подтверждено</span>
@@ -67,24 +87,52 @@
   <div class="card">
     <span class="tag wait">ожидается</span>
     <h3>🏁 100% по категориям мира</h3>
-    <p>В прошлых частях — достижение за закрытие всех побочных категорий: миссии, хобби, коллекции, испытания.</p>
+    <p>Миссии, хобби, коллекции, испытания — закрываются категориями.</p>
   </div>
   <div class="card">
     <span class="tag wait">ожидается</span>
     <h3>💰 Денежные трофеи</h3>
-    <p>«Заработай $1,000,000», «купи гараж/имущество» — неизменные спутники серии. Способы быстро собрать капитал — <a href="dengi.html" style="color:var(--cyan)">в гайде по деньгам</a>.</p>
+    <p>«Заработай $1,000,000», имущество, гаражи. Способы — <a href="dengi.html" style="color:var(--cyan)">в гайде по деньгам</a>.</p>
   </div>
   <div class="card">
     <span class="tag wait">ожидается</span>
     <h3>🐊 Странные и смешные</h3>
-    <p>Каждая частьseries содержит шуточные достижения. Уже подтверждено: Bigfoot вернулся — высок шанс, что с ним связано что-то отдельное.</p>
+    <p>Bigfoot вернулся — высок шанс, что с ним связано отдельное достижение.</p>
   </div>
 
-  <div class="tip">📌 Как только Sony/Xbox опубликуют полный список — страница обновится до полной таблицы с редкостью и советами по каждому трофею. Отмечай выполненные трофеи в <a href="/" style="color:var(--cyan)">трекере</a>.</div>
+  <div class="tip">📌 Полный список PSN/Xbox добавим, как только Sony опубликуют. Прогресс трофеев отмечай в <a href="/" style="color:var(--cyan)">трекере</a>.</div>
 
   <p style="text-align:center; margin:34px 0"><a class="btn" href="/">← Открыть трекер 100%</a></p>
 
   <footer>Фан-проект. Не связан с Rockstar Games и Take-Two Interactive.<br>© 2026 · <a href="https://gta-6-gaid.2bd.net/" style="color:#8f80b5">gta-6-gaid.2bd.net</a></footer>
 </div>
+
+<script>
+(function(){
+  var STAGES = [
+    {icon:'1', lbl:'Старт', d:'<b>Глава 1–2. Цель: не ломать будущее.</b><ul><li>Заведи привычку: сейв перед каждой миссией.</li><li>Освой телефон: фото, контакты, биржа — пригодится.</li><li>Начни трекер: отмечай миссии по ходу.</li></ul>'},
+    {icon:'2', lbl:'Сюжет', d:'<b>Главы 2–4. Цель: кампания без косяков.</b><ul><li>Читай брифинг: за Джейсона или Лючию — это влияет на достижения.</li><li>Побочные миссии открывай сразу, не копи на потом.</li><li>Деньги копи на гараж и снаряжение.</li></ul>'},
+    {icon:'3', lbl:'Мир', d:'<b>После сюжета. Цель: категории мира.</b><ul><li>Побочные активности: гонки, стрельбище, угон по заказу.</li><li>Район за районом — так меньше пробега.</li><li>Карта точек — на странице «Коллекции».</li></ul>'},
+    {icon:'4', lbl:'Коллекции', d:'<b>Самый долгий этап.</b><ul><li>Пакеты, клады, фототочки — по маршрутам из карты.</li><li>Металлодетектор: Грассриверс и Порт-Геллхорн.</li><li>Отмечай каждую точку — счёт не потеряешь.</li></ul>'},
+    {icon:'👑', lbl:'Платина', d:'<b>Финал.</b><ul><li>Сверь трофеи с полным списком PSN (добавим, когда выйдет).</li><li>Добей «странные» трофеи — Bigfoot уже ждёт.</li><li>Читы включай в последнюю очередь: они могут влиять на достижения.</li></ul>'}
+  ];
+  var road = document.getElementById('road');
+  var det = document.getElementById('roadDetail');
+  var current = 0;
+  STAGES.forEach(function(s, i){
+    var el = document.createElement('div');
+    el.className = 'stage' + (i === 0 ? ' active' : '');
+    el.innerHTML = '<div class="dot">' + s.icon + '</div><div class="lbl">' + s.lbl + '</div>';
+    el.addEventListener('click', function(){
+      current = i;
+      document.querySelectorAll('.stage').forEach(function(x){ x.classList.remove('active'); });
+      el.classList.add('active');
+      det.innerHTML = s.d;
+    });
+    road.appendChild(el);
+  });
+  det.innerHTML = STAGES[0].d;
+})();
+</script>
 </body>
 </html>

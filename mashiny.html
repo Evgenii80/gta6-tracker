@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Машины GTA 6 — база транспорта, классы и гаражи</title>
+<meta name="description" content="Транспорт GTA 6: классы машин, лодки и авиация, гаражи и коллекционирование. База моделей пополняется по мере подтверждения.">
+<link rel="canonical" href="https://gta-6-gaid.2bd.net/mashiny.html">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --neon:#ff2e97; --violet:#8a5cff; --cyan:#2de9ff; --orange:#ff9e4f; --line:rgba(138,92,255,.35); }
+  body{margin:0; font-family:'Manrope',system-ui,sans-serif; color:#f2ecff; background:#120a24; line-height:1.6}
+  .wrap{max-width:860px; margin:0 auto; padding:0 20px}
+  header{padding:36px 0 22px; text-align:center; background:linear-gradient(180deg,#2a0f4d,#7a1a68 80%,#e63d7f)}
+  header .kick{font-family:'Russo One'; font-size:12px; letter-spacing:.3em; color:#ffe9a8; text-transform:uppercase}
+  h1{font-family:'Russo One'; font-size:clamp(22px,5vw,36px); margin:10px 0 0; text-shadow:0 0 18px rgba(255,46,151,.6)}
+  nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:18px 0 6px}
+  nav a{color:#c9bcff; text-decoration:none; font-size:13px; font-weight:600; border:1px solid var(--line); border-radius:99px; padding:7px 14px}
+  nav a:hover{border-color:var(--neon); color:#fff}
+  nav a.on{background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff; border-color:transparent}
+  h2{font-family:'Russo One'; font-size:21px; margin:34px 0 10px}
+  .sub{color:#a99cc9; font-size:14.5px; margin:0 0 20px}
+  .card{background:linear-gradient(180deg,#1c1139,#171030); border:1px solid var(--line); border-radius:14px; padding:18px; margin-bottom:14px}
+  .card h3{margin:0 0 8px; font-size:15.5px; color:#ffe9a8}
+  .card p, .card li{font-size:14.5px; color:#b3a6d4}
+  .tip{padding:12px 14px; border-radius:10px; background:rgba(45,233,255,.07); border:1px solid rgba(45,233,255,.25); font-size:13.5px; color:#9fd8e0; margin-top:12px}
+  footer{border-top:1px solid var(--line); padding:24px 0 40px; font-size:12.5px; color:#8f80b5; text-align:center}
+  a.btn{display:inline-block; padding:10px 20px; border-radius:12px; font-weight:800; font-size:14px; text-decoration:none; background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff}
+
+  /* filter + cars */
+  .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px}
+  .fbtn{padding:8px 16px; border-radius:99px; border:1px solid var(--line); background:#221344; color:#c9bcff; font-weight:700; font-size:13px; cursor:pointer; transition:all .15s}
+  .fbtn:hover{border-color:var(--violet)}
+  .fbtn.on{background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff; border-color:transparent}
+  .cars{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px}
+  .car{background:linear-gradient(180deg,#1c1139,#171030); border:1px solid var(--line); border-radius:14px; padding:16px; transition:border-color .2s}
+  .car:hover{border-color:var(--neon)}
+  .car .ico{font-size:26px; margin-bottom:6px}
+  .car b{display:block; color:#fff; font-size:14.5px; margin-bottom:4px}
+  .car span{font-size:12.5px; color:#a99cc9; display:block; margin-bottom:8px}
+  .car p{font-size:13px; color:#b3a6d4; margin:0}
+  .gshot{margin:14px 0 0; border:1px dashed rgba(138,92,255,.45); border-radius:12px; padding:8px}
+  .gshot img{width:100%; display:block; border-radius:8px}
+  .gshot figcaption{font-size:12px; color:#8f80b5; text-align:center; padding:6px 0 2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kick">GTA 6 · Гайды</div>
+    <h1>Машины и транспорт GTA 6</h1>
+  </header>
+
+  <nav>
+    <a href="/">🏠 Трекер</a>
+    <a href="dengi.html">💰 Деньги</a>
+    <a href="100-procent.html">🏁 100%</a>
+    <a href="dostizheniya.html">🏆 Достижения</a>
+    <a href="karty.html">🗺 Коллекции</a>
+    <a href="mashiny.html" class="on">🚗 Машины</a>
+  </nav>
+
+  <h2>🚙 Классы транспорта — фильтруй и изучай</h2>
+  <p class="sub">База моделей появляется по мере подтверждения (названия Rockstar ещё не раскрывала). Пока — все классы, которые точно будут, и что о них важно знать.</p>
+  <div class="filters" id="filters"></div>
+  <div class="cars" id="cars"></div>
+
+  <h2>Гараж и коллекционирование</h2>
+  <div class="card">
+    <p>Для трофеев и 100% транспорт — отдельная категория. Подтверждено направление: побочная миссия <b>Classic Car Collection</b> — заброшенные классики восстанавливаются и остаются твоими. Плюс традиционные механики Rockstar: покупные гаражи, имущественные трофеи.</p>
+    <div class="tip">💡 Не продавай редкие машины с первого раза: часть может понадобиться для коллекций. Храни хотя бы по одному экземпляру каждого класса.</div>
+  </div>
+
+  <figure class="gshot"><img src="img/mashiny-1.jpg" alt="Скриншот: гараж в GTA 6" loading="lazy" onerror="this.remove()"><figcaption>📷 Твой скриншот: гараж или редкая машина (положи файл img/mashiny-1.jpg)</figcaption></figure>
+
+  <p style="text-align:center; margin:34px 0"><a class="btn" href="/">← Открыть трекер 100%</a></p>
+
+  <footer>Фан-проект. Не связан с Rockstar Games и Take-Two Interactive.<br>© 2026 · <a href="https://gta-6-gaid.2bd.net/" style="color:#8f80b5">gta-6-gaid.2bd.net</a></footer>
+</div>
+
+<script>
+(function(){
+  var CLASSES = [
+    {id:'sport', ico:'🏎', name:'Спорт-кары', d:'Скорость и стиль Вайс-Сити: низкие, яркие, громкие. Основной транспорт Джейсона. Появляются у ночных клубов и на променаде Вайс-Бич.'},
+    {id:'muscle', ico:'🚗', name:'Масл-кары', d:'Американская классика: дым из-под колёс и полицейские погони. Часть — кандидаты на восстановление в Classic Car Collection.'},
+    {id:'offroad', ico:'🛻', name:'Внедорожники и пикапы', d:'Для Грассриверс и болот: без них на кладах не выжить. Багги и квадроциклы — туда же.'},
+    {id:'boat', ico:'🛥', name:'Лодки и катера', d:'Половина коллекций штата — на воде. Катер обязателен для Гатор-Кис и подводных пакетов.'},
+    {id:'air', ico:'🚁', name:'Авиация', d:'Вертолёты для осмотра точек с воздуха, самолёты для перелётов, дельтаплан — на Маунт-Калаге.'},
+    {id:'moto', ico:'🏍', name:'Мото и скутеры', d:'Проворнее машин в Traffic Вайс-Сити, но смертоноснее. Скутеры — местная классика прибрежных районов.'}
+  ];
+  var fl = document.getElementById('filters');
+  var box = document.getElementById('cars');
+  var active = 'all';
+  function render(){
+    box.innerHTML = '';
+    CLASSES.forEach(function(c){
+      if (active !== 'all' && active !== c.id) return;
+      var el = document.createElement('div');
+      el.className = 'car';
+      el.innerHTML = '<div class="ico">' + c.ico + '</div><b>' + c.name + '</b><span>класс · модели уточняются</span><p>' + c.d + '</p>';
+      box.appendChild(el);
+    });
+  }
+  var allBtn = document.createElement('button');
+  allBtn.className = 'fbtn on'; allBtn.textContent = 'Все классы';
+  allBtn.addEventListener('click', function(){ active='all'; setActive(allBtn); render(); });
+  fl.appendChild(allBtn);
+  CLASSES.forEach(function(c){
+    var b = document.createElement('button');
+    b.className = 'fbtn'; b.textContent = c.ico + ' ' + c.name;
+    b.addEventListener('click', function(){ active=c.id; setActive(b); render(); });
+    fl.appendChild(b);
+  });
+  function setActive(btn){
+    document.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('on'); });
+    btn.classList.add('on');
+  }
+  render();
+})();
+</script>
+</body>
+</html>
