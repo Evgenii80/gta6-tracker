@@ -3,29 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Карта коллекций GTA 6 — пакеты, клады, фототочки</title>
-<meta name="description" content="Карта коллекций GTA 6: скрытые пакеты, клады с металлодетектором, фотодостопримечательности. Где искать и как собирать эффективно.">
+<title>Карта коллекций GTA 6 — интерактивная карта точек, пакетов и кладов</title>
+<meta name="description" content="Интерактивная карта штата Леониди для GTA 6: районы, точки сбора коллекций, пакеты, клады, фототочки. Клик по маркеру — что там искать.">
 <link rel="canonical" href="https://gta-6-gaid.2bd.net/karty.html">
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{ --neon:#ff2e97; --violet:#8a5cff; --cyan:#2de9ff; --line:rgba(138,92,255,.35); }
+  :root{ --neon:#ff2e97; --violet:#8a5cff; --cyan:#2de9ff; --orange:#ff9e4f; --line:rgba(138,92,255,.35); }
   body{margin:0; font-family:'Manrope',system-ui,sans-serif; color:#f2ecff; background:#120a24; line-height:1.6}
-  .wrap{max-width:800px; margin:0 auto; padding:0 20px}
-  header{padding:40px 0 24px; text-align:center; background:linear-gradient(180deg,#2a0f4d,#7a1a68 80%,#e63d7f); margin-bottom:34px}
+  .wrap{max-width:860px; margin:0 auto; padding:0 20px}
+  header{padding:36px 0 22px; text-align:center; background:linear-gradient(180deg,#2a0f4d,#7a1a68 80%,#e63d7f)}
   header .kick{font-family:'Russo One'; font-size:12px; letter-spacing:.3em; color:#ffe9a8; text-transform:uppercase}
-  h1{font-family:'Russo One'; font-size:clamp(24px,5vw,38px); margin:10px 0 0; text-shadow:0 0 18px rgba(255,46,151,.6)}
+  h1{font-family:'Russo One'; font-size:clamp(22px,5vw,36px); margin:10px 0 0; text-shadow:0 0 18px rgba(255,46,151,.6)}
+  nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:18px 0 6px}
+  nav a{color:#c9bcff; text-decoration:none; font-size:13px; font-weight:600; border:1px solid var(--line); border-radius:99px; padding:7px 14px}
+  nav a:hover{border-color:var(--neon); color:#fff}
+  nav a.on{background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff; border-color:transparent}
   h2{font-family:'Russo One'; font-size:21px; margin:34px 0 10px}
   .card{background:linear-gradient(180deg,#1c1139,#171030); border:1px solid var(--line); border-radius:14px; padding:18px; margin-bottom:14px}
   .card h3{margin:0 0 8px; font-size:15.5px; color:#ffe9a8}
   .card p, .card li{font-size:14.5px; color:#b3a6d4}
   ol{padding-left:20px; font-size:14.5px; color:#b3a6d4}
   .tip{padding:12px 14px; border-radius:10px; background:rgba(45,233,255,.07); border:1px solid rgba(45,233,255,.25); font-size:13.5px; color:#9fd8e0; margin-top:12px}
-  nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; padding:20px 0}
-  nav a{color:#c9bcff; text-decoration:none; font-size:13px; font-weight:600; border:1px solid var(--line); border-radius:99px; padding:7px 14px}
-  nav a:hover{border-color:var(--neon); color:#fff}
-  nav a.on{background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff; border-color:transparent}
   footer{border-top:1px solid var(--line); padding:24px 0 40px; font-size:12.5px; color:#8f80b5; text-align:center}
   a.btn{display:inline-block; padding:10px 20px; border-radius:12px; font-weight:800; font-size:14px; text-decoration:none; background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff}
+
+  /* ===== map ===== */
+  .mapbox{background:linear-gradient(180deg,#1c1139,#171030); border:1px solid var(--line); border-radius:16px; padding:14px}
+  .map-legend{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; font-size:12.5px; color:#c9bcff; padding:4px 0 10px}
+  .lg{display:inline-flex; align-items:center; gap:6px}
+  .lg i{width:12px; height:12px; border-radius:50%; display:inline-block}
+  svg{width:100%; height:auto; display:block; border-radius:10px}
+  .pin{cursor:pointer}
+  .pin circle{stroke:#120a24; stroke-width:2.5; transition:r .15s}
+  .pin:hover circle, .pin.active circle{r:13}
+  .pin text{font-family:'Russo One'; font-size:11px; fill:#120a24; pointer-events:none}
+  .info{min-height:74px; margin-top:12px; background:#221344; border:1px solid var(--line); border-radius:12px; padding:14px 16px; font-size:14px; color:#d8cfee}
+  .info b{color:var(--cyan)}
+  .gshot{margin:14px 0 0; border:1px dashed rgba(138,92,255,.45); border-radius:12px; padding:8px}
+  .gshot img{width:100%; display:block; border-radius:8px}
+  .gshot figcaption{font-size:12px; color:#8f80b5; text-align:center; padding:6px 0 2px}
 </style>
 </head>
 <body>
@@ -43,40 +59,127 @@
     <a href="karty.html" class="on">🗺 Коллекции</a>
   </nav>
 
-  <p style="color:#a99cc9; font-size:14.5px">Интерактивная карта в работе — точные координаты собираются по мере исследования штата Леониди игроками. Пока — стратегия сбора по категориям, чтобы ты не тратил время впустую.</p>
+  <h2>🗺 Интерактивная карта штата Леониди</h2>
+  <div class="mapbox">
+    <div class="map-legend">
+      <span class="lg"><i style="background:var(--neon)"></i> пакеты</span>
+      <span class="lg"><i style="background:var(--cyan)"></i> клады (металлодетектор)</span>
+      <span class="lg"><i style="background:var(--orange)"></i> фототочки</span>
+    </div>
+    <svg viewBox="0 0 620 640" role="img" aria-label="Схематичная карта штата Леониди">
+      <!-- water -->
+      <rect width="620" height="640" rx="10" fill="#0e1a3a"/>
+      <path d="M-10 -10 h260 q-30 90 10 150 q30 50 -10 110 q-40 60 0 120 q30 60 -20 120 q-50 70 0 160 h-240 z" fill="#123a5c"/>
+      <path d="M630 300 q-60 20 -80 80 q-20 60 20 120 q30 60 60 80 v120 z" fill="#123a5c"/>
+      <text x="60" y="70" fill="#3b6d9c" font-family="Russo One" font-size="13">OCEAN</text>
+      <text x="520" y="480" fill="#3b6d9c" font-family="Russo One" font-size="13">ATLANTIC</text>
+      <!-- mainland -->
+      <path d="M240 -10 q120 40 210 30 q80 -5 170 20 q20 130 -10 260 q-20 110 20 210 l-40 30 q-90 -40 -170 -10 q-60 20 -110 0 q-30 -110 0 -210 q30 -110 10 -220 q-10 -100 0 -180 z" fill="#1a3142"/>
+      <!-- grassrivers channels -->
+      <g stroke="#2b6d8c" stroke-width="8" fill="none" opacity=".8" stroke-linecap="round">
+        <path d="M280 300 q30 40 10 90 q-20 50 20 90"/>
+        <path d="M320 320 q-10 60 -50 100"/>
+        <path d="M300 380 q40 30 60 80"/>
+      </g>
+      <!-- city blocks Vice City -->
+      <g fill="#2a2050" stroke="#3d2f6b">
+        <rect x="380" y="60" width="34" height="24" rx="3"/><rect x="420" y="60" width="34" height="24" rx="3"/>
+        <rect x="380" y="92" width="34" height="24" rx="3"/><rect x="420" y="92" width="34" height="24" rx="3"/>
+        <rect x="460" y="92" width="30" height="24" rx="3"/><rect x="400" y="124" width="50" height="24" rx="3"/>
+      </g>
+      <text x="378" y="46" fill="#8a5cff" font-family="Russo One" font-size="14">VICE CITY</text>
+      <!-- southside -->
+      <text x="380" y="190" fill="#ff5ea8" font-family="Russo One" font-size="12">SOUTHSIDE</text>
+      <!-- labels -->
+      <text x="330" y="270" fill="#6ee7d8" font-family="Russo One" font-size="12">GRASSRIVERS</text>
+      <text x="90" y="180" fill="#9aa7b5" font-family="Russo One" font-size="12">MOUNT KALAGA</text>
+      <path d="M70 210 l40 -50 l45 55 z" fill="#2e4356"/>
+      <text x="300" y="530" fill="#9aa7b5" font-family="Russo One" font-size="12">AMBROSIA</text>
+      <text x="480" y="300" fill="#9aa7b5" font-family="Russo One" font-size="12">PORT GELLHORN</text>
+      <!-- keys arc -->
+      <g fill="#1f4a63">
+        <ellipse cx="300" cy="580" rx="40" ry="14"/>
+        <ellipse cx="390" cy="595" rx="45" ry="15"/>
+        <ellipse cx="480" cy="600" rx="40" ry="14"/>
+      </g>
+      <text x="330" y="625" fill="#6ee7d8" font-family="Russo One" font-size="12">GATOR KEYS</text>
+      <!-- pins -->
+      <g id="pins"></g>
+    </svg>
+    <div class="info" id="mapInfo">👆 Кликни по маркеру на карте — покажу, что искать в этой точке.</div>
+  </div>
 
   <h2>Категории коллекций</h2>
   <div class="card">
     <h3>💎 Скрытые пакеты</h3>
-    <p>Классика серии: припрятанные пакеты в труднодоступных местах. Ориентируйся на:<br>
-    • пирсы и причалы Вайс-Сити и Кис<br>
-    • крыши и балконы высоток<br>
-    • подводные точки — бери дайвинг-снаряжение заранее</p>
+    <p>Пирсы и причалы Вайс-Сити и Кис, крыши высоток, подводные точки (бери дайвинг заранее).</p>
   </div>
   <div class="card">
     <h3>🔩 Клады с металлодетектором</h3>
-    <p>Металлодетектор — активность, которая открывает закопанные клады. Совет из прохождения: совмещай ходки с металлодетектором с поездками по сельским районам (Грассриверс, окрестности Порт-Геллхорна) — там плотность выше всего.</p>
+    <p>Совмещай ходки с Грассриверс и окрестностями Порт-Геллхорна — там плотность кладов выше.</p>
   </div>
   <div class="card">
     <h3>📸 Фотодостопримечательности</h3>
-    <p>Фотографируй отмеченные места телефоном персонажа. Обычно это знаковые точки: вывески, памятники, странные инсталляции. В GTA 6 таких ориентиров больше, чем в любой прошлой части — кампания огромная.</p>
+    <p>Знаковые точки: вывески, памятники, странные инсталляции. В GTA 6 их больше, чем в любой прошлой части.</p>
   </div>
 
   <h2>Как собирать эффективно</h2>
   <div class="card">
     <ol>
-      <li><b>По районам, а не по типам.</b> Заезжаешь в район — собираешь в нём всё: пакеты, фото, клады. Меньше пробега.</li>
-      <li><b>Отмечай в трекере.</b> <a href="/" style="color:var(--cyan)">Чек-лист на главной</a> сохраняет прогресс в браузере — не потеряешь счёт.</li>
-      <li><b>Ночью не ищи.</b> В темноте в Вайс-Сити хуже видимость и активнее полиция — пакеты лучше искать днём.</li>
-      <li><b>Смотри на воды.</b> Вайс-Сити — прибрежный город, значительная часть коллекций на воде или под ней.</li>
+      <li><b>По районам, а не по типам.</b> Заезжаешь в район — собираешь в нём всё: пакеты, фото, клады.</li>
+      <li><b>Отмечай в трекере.</b> <a href="/" style="color:var(--cyan)">Чек-лист на главной</a> сохраняет прогресс в браузере.</li>
+      <li><b>Днём искать удобнее.</b> Ночью видимость хуже и полиция активнее.</li>
+      <li><b>Вода — твой друг.</b> Прибрежный город: значительная часть коллекций на воде или под ней.</li>
     </ol>
   </div>
 
-  <div class="tip">🗺️ Интерактивная карта с точками появится здесь, когда игроки оцифруют мир (обычно занимает 1–2 недели после релиза). Страница обновится автоматически.</div>
+  <div class="tip">🗺️ Карта — схематичная заготовка по географии штата: она показывает, где сосредотачивать поиски. Точные координаты точек добавим по мере оцифровки мира, а в слоты ниже встают твои реальные скриншоты.</div>
+
+  <figure class="gshot"><img src="img/karty-1.jpg" alt="Скриншот: точка коллекции" loading="lazy" onerror="this.remove()"><figcaption>📷 Твой скриншот: найденная точка (положи файл img/karty-1.jpg)</figcaption></figure>
 
   <p style="text-align:center; margin:34px 0"><a class="btn" href="/">← Открыть трекер 100%</a></p>
 
   <footer>Фан-проект. Не связан с Rockstar Games и Take-Two Interactive.<br>© 2026 · <a href="https://gta-6-gaid.2bd.net/" style="color:#8f80b5">gta-6-gaid.2bd.net</a></footer>
 </div>
+
+<script>
+(function(){
+  var POINTS = [
+    {x:415,y:130,t:'p', d:'Вайс-Сити, даунтаун: пакеты на крышах и балконах высоток. Поднимайся по пожарным лестницам — часть пакетов видна только с воздуха на вертолёте.'},
+    {x:395,y:185,t:'p', d:'Саутсайд: жилая застройка и базары. Пакеты прячутся во дворах, под мостами и в переулках. Осторожно: территория банд, полиция прилетает быстро.'},
+    {x:490,y:130,t:'f', d:'Вайс-Бич: фототочки на променаде — знаменитые неоновые вывески отелей и арт-объекты. Лучшие кадры на закате.'},
+    {x:330,y:330,t:'c', d:'Грассриверс (болота): самая плотная зона кладов. Металлодетектор + лодка: часть сигналов на островках и в протоках. Следи за аллигаторами.'},
+    {x:300,y:430,t:'c', d:'Юго-запад Грассриверс: старые фермы и сараи — клады часто закопаны у заброшенных строений.'},
+    {x:480,y:320,t:'c', d:'Порт-Геллхорн: промзона и причалы. Металлодетектор на пляжах севернее порта, пакеты — на кранах и контейнерах.'},
+    {x:130,y:200,t:'f', d:'Маунт-Калага: фототочки на смотровых площадках и у знаков парка. Заодно дельтаплан — с него видно оставшиеся точки.'},
+    {x:330,y:530,t:'p', d:'Амброзия: пакеты на пирсах рыбацкого городка и на сваях у тростника.'},
+    {x:300,y:580,t:'p', d:'Гатор-Кис, западная цепь: пакеты под мостками и в мелководье между островами.'},
+    {x:480,y:600,t:'f', d:'Гатор-Кис, восточная цепь: фототочки маяков и коралловых отмелей. Добираться на катере.'}
+  ];
+  var COLORS = {p:'#ff2e97', c:'#2de9ff', f:'#ff9e4f'};
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var pins = document.getElementById('pins');
+  var info = document.getElementById('mapInfo');
+  POINTS.forEach(function(pt, i){
+    var g = document.createElementNS(svgNS, 'g');
+    g.setAttribute('class', 'pin');
+    g.setAttribute('transform', 'translate(' + pt.x + ',' + pt.y + ')');
+    var c = document.createElementNS(svgNS, 'circle');
+    c.setAttribute('r', '11'); c.setAttribute('fill', COLORS[pt.t]);
+    var t = document.createElementNS(svgNS, 'text');
+    t.setAttribute('y', '4'); t.setAttribute('text-anchor', 'middle');
+    t.textContent = i + 1;
+    g.appendChild(c); g.appendChild(t);
+    g.addEventListener('click', function(){
+      document.querySelectorAll('.pin').forEach(function(p){ p.classList.remove('active'); });
+      g.classList.add('active');
+      var kind = pt.t === 'p' ? '💎 Пакет' : pt.t === 'c' ? '🔩 Клад' : '📸 Фототочка';
+      info.innerHTML = '<b>Точка ' + (i+1) + ' · ' + kind + '.</b> ' + pt.d;
+      info.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+    pins.appendChild(g);
+  });
+})();
+</script>
 </body>
 </html>
