@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTA 6: трекер 100% прохождения — чек-лист миссий, достижений и коллекций</title>
+<meta name="description" content="Интерактивный чек-лист 100% прохождения GTA 6. Отмечай миссии, побочные задания, коллекции и достижения — прогресс сохраняется в браузере.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --neon:#ff2e97; --violet:#8a5cff; --cyan:#2de9ff; --orange:#ff9e4f;
+    --bg:#120a24; --card:#1a1038; --line:rgba(138,92,255,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; font-family:'Manrope',system-ui,sans-serif; color:#f2ecff; background:var(--bg); line-height:1.55; overflow-x:hidden}
+  .wrap{max-width:880px; margin:0 auto; padding:0 20px}
+  section{padding:44px 0}
+  h2{font-family:'Russo One',sans-serif; font-size:26px; margin:0 0 6px; letter-spacing:.02em}
+  .sub{color:#a99cc9; margin:0 0 24px; font-size:14.5px}
+
+  /* ===== HERO: vice sunset ===== */
+  .hero{
+    position:relative; overflow:hidden; text-align:center;
+    padding:96px 0 150px;
+    background:linear-gradient(180deg,#0d0620 0%,#2a0f4d 30%,#7a1a68 58%,#e63d7f 78%,#ff8a4c 100%);
+  }
+  .sun{
+    position:absolute; left:50%; top:16%; transform:translateX(-50%);
+    width:210px; height:210px; border-radius:50%;
+    background:linear-gradient(180deg,#ffe9a8,#ff9e4f 55%,#ff2e97);
+    box-shadow:0 0 90px rgba(255,46,151,.65), 0 0 200px rgba(255,158,79,.35);
+    animation:sunPulse 5s ease-in-out infinite;
+  }
+  .sun::after{
+    content:""; position:absolute; inset:0; border-radius:50%;
+    background:repeating-linear-gradient(180deg, transparent 0 14px, rgba(18,10,36,.55) 14px 20px);
+    -webkit-mask:linear-gradient(180deg,transparent 55%,#000 55%);
+            mask:linear-gradient(180deg,transparent 55%,#000 55%);
+  }
+  @keyframes sunPulse{50%{box-shadow:0 0 120px rgba(255,46,151,.85), 0 0 240px rgba(255,158,79,.45)}}
+  .palm{position:absolute; font-size:110px; filter:brightness(0) drop-shadow(0 10px 18px rgba(0,0,0,.4)); opacity:.9; user-select:none}
+  .palm.l{left:-28px; bottom:120px; transform:rotate(-8deg)}
+  .palm.r{right:-24px; bottom:130px; transform:scaleX(-1) rotate(-6deg)}
+  .palm.r2{right:70px; bottom:118px; font-size:70px; transform:scaleX(-1); opacity:.65}
+  .grid-floor{
+    position:absolute; left:-60%; width:220%; bottom:-2px; height:240px;
+    background:
+      linear-gradient(180deg, transparent, rgba(18,10,36,.95) 85%),
+      repeating-linear-gradient(90deg, rgba(138,92,255,.55) 0 2px, transparent 2px 90px),
+      repeating-linear-gradient(0deg, rgba(45,233,255,.4) 0 2px, transparent 2px 55px);
+    transform:perspective(420px) rotateX(62deg); transform-origin:top center;
+    animation:gridmove 2.6s linear infinite;
+  }
+  @keyframes gridmove{to{background-position:0 0, 0 0, 0 55px}}
+  .scan{position:absolute; inset:0; pointer-events:none; opacity:.35;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 2px, transparent 2px 5px)}
+  .hero > .inner{position:relative; z-index:2}
+  .kicker{display:inline-block; font-family:'Russo One'; font-size:13px; letter-spacing:.35em; text-transform:uppercase; color:#ffe9a8; margin-bottom:14px; text-shadow:0 0 14px rgba(255,46,151,.8)}
+  .hero h1{
+    font-family:'Russo One'; font-size:clamp(34px,7vw,66px); margin:0; line-height:1.08;
+    text-transform:uppercase; letter-spacing:.02em;
+    color:#fff;
+    text-shadow:0 0 22px rgba(255,46,151,.75), 0 0 60px rgba(255,46,151,.4), 0 3px 0 rgba(0,0,0,.35);
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(120deg,#2de9ff,#ffe9a8);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero .date{color:rgba(255,255,255,.85); font-size:16.5px; font-weight:600; margin-top:10px; text-shadow:0 1px 8px rgba(0,0,0,.4)}
+
+  /* ===== ticker ===== */
+  .ticker{
+    position:relative; z-index:3; overflow:hidden; white-space:nowrap;
+    background:linear-gradient(90deg,#ff2e97,#8a5cff 60%,#2de9ff);
+    font-family:'Russo One'; font-size:12.5px; letter-spacing:.22em; text-transform:uppercase;
+    padding:9px 0; margin-top:-34px;
+    box-shadow:0 6px 30px rgba(255,46,151,.45);
+  }
+  .ticker > div{display:inline-block; animation:tick 26s linear infinite}
+  .ticker span{margin:0 26px; color:#fff}
+  .ticker span::after{content:"★"; margin-left:52px; color:rgba(255,255,255,.6)}
+  @keyframes tick{to{transform:translateX(-50%)}}
+
+  /* ===== progress ===== */
+  .total{max-width:540px; margin:44px auto 0; text-align:center}
+  .total .num{
+    font-family:'Russo One'; font-size:88px; line-height:1;
+    background:linear-gradient(120deg,#2de9ff,#ff2e97 55%,#ff9e4f);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 0 26px rgba(255,46,151,.55));
+  }
+  .total .cap{font-size:13.5px; color:#a99cc9; margin-top:8px; letter-spacing:.06em; text-transform:uppercase}
+  .bar{height:14px; border-radius:99px; background:#241543; border:1px solid var(--line); overflow:hidden; margin-top:18px;
+       box-shadow:inset 0 2px 6px rgba(0,0,0,.5)}
+  .bar > div{height:100%; width:0; border-radius:99px; transition:width .4s ease;
+    background:linear-gradient(90deg,#2de9ff,#ff2e97,#ff9e4f);
+    box-shadow:0 0 14px rgba(255,46,151,.8)}
+  .tools{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:26px}
+  .btn{
+    display:inline-block; padding:11px 20px; border-radius:12px;
+    font-weight:800; font-size:13.5px; cursor:pointer; text-decoration:none;
+    border:1px solid var(--line); background:#221344; color:#e9e1ff;
+    transition:transform .12s, box-shadow .12s;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(138,92,255,.35); border-color:var(--violet)}
+  .btn.primary{
+    background:linear-gradient(120deg,#ff2e97,#8a5cff); color:#fff; border-color:transparent;
+    box-shadow:0 4px 20px rgba(255,46,151,.45);
+  }
+  .btn.primary:hover{box-shadow:0 8px 28px rgba(255,46,151,.6)}
+
+  /* ===== checklist ===== */
+  /* ===== how ===== */
+  .how{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin-bottom:30px}
+  .how-item{background:linear-gradient(180deg,#1c1139,#171030); border:1px solid var(--line); border-radius:14px; padding:16px; font-size:13.5px; color:#b3a6d4}
+  .how-item b{color:#fff; font-size:14.5px}
+  .how-n{display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border-radius:50%; margin-bottom:8px; font-family:'Russo One'; font-size:13px; color:#fff; background:linear-gradient(120deg,#ff2e97,#8a5cff); box-shadow:0 0 14px rgba(255,46,151,.5)}
+  .cat{
+    background:linear-gradient(180deg,#1c1139,#171030);
+    border:1px solid var(--line); border-radius:16px; padding:18px 18px 14px; margin-bottom:14px;
+    transition:box-shadow .2s, border-color .2s;
+  }
+  .cat:hover{border-color:var(--neon); box-shadow:0 0 0 1px rgba(255,46,151,.25), 0 10px 40px rgba(255,46,151,.12)}
+  .cat-head{display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer}
+  .cat-head h3{margin:0; font-family:'Russo One'; font-size:16px; font-weight:400; letter-spacing:.03em}
+  .cat-head .mini{font-family:ui-monospace,monospace; font-size:13px; color:#a99cc9; font-variant-numeric:tabular-nums}
+  .mini-bar{height:6px; border-radius:99px; background:#2a1a4e; overflow:hidden; margin:12px 0 8px}
+  .mini-bar > div{height:100%; width:0; border-radius:99px; background:linear-gradient(90deg,#2de9ff,#ff2e97); box-shadow:0 0 10px rgba(255,46,151,.7); transition:width .3s}
+  .items{display:none; margin-top:6px}
+  .cat.open .items{display:block}
+  .item{display:flex; align-items:flex-start; gap:12px; padding:10px 4px; border-top:1px solid rgba(138,92,255,.18); cursor:pointer}
+  .item:first-child{border-top:none}
+  .item input{
+    margin-top:2px; width:18px; height:18px; flex:none; appearance:none;
+    border:2px solid var(--violet); border-radius:6px; background:transparent; cursor:pointer;
+    transition:all .15s; position:relative;
+  }
+  .item input:checked{background:linear-gradient(120deg,#ff2e97,#8a5cff); border-color:transparent; box-shadow:0 0 12px rgba(255,46,151,.6)}
+  .item input:checked::after{content:"✓"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:900}
+  .item span{font-size:14.5px; font-weight:600; color:#e9e1ff}
+  .item.done span{color:#7f6fa8; text-decoration:line-through}
+
+  /* ===== faq ===== */
+  /* ===== news ===== */
+  /* ===== guides ===== */
+  .g ol{margin:10px 0 0; padding-left:20px; color:#b3a6d4; font-size:14px}
+  .g ol li{margin-bottom:6px}
+  .g ol li::marker{color:var(--neon); font-weight:800}
+  .g-tip{margin-top:10px; padding:10px 12px; border-radius:10px; background:rgba(45,233,255,.07); border:1px solid rgba(45,233,255,.25); font-size:13.5px; color:#9fd8e0}
+  .g-tip b{color:var(--cyan)}
+  .gshot{margin:14px 0 0; border:1px dashed rgba(138,92,255,.45); border-radius:12px; padding:8px}
+  .gshot img{width:100%; display:block; border-radius:8px}
+  .gshot figcaption{font-size:12px; color:#8f80b5; text-align:center; padding:6px 0 2px}
+  .n-updated{font-size:12px; color:#8f80b5; margin:0 0 12px}
+  .n-item{display:flex; align-items:center; gap:10px; padding:10px 2px; border-top:1px solid rgba(138,92,255,.18); text-decoration:none}
+  .n-thumb{width:72px; height:44px; object-fit:cover; border-radius:8px; border:1px solid var(--line); flex:none; background:#241543}
+  .n-item:hover .n-title{color:var(--neon)}
+  .n-date{font-family:ui-monospace,monospace; font-size:12px; color:var(--cyan); flex:none}
+  .n-title{font-size:14.5px; font-weight:600; color:#e9e1ff; line-height:1.4}
+  .n-src{margin-left:auto; flex:none; font-size:11.5px; color:#8f80b5; text-transform:uppercase; letter-spacing:.05em}
+  .faq{max-width:740px}
+  details{
+    background:#1a1038; border:1px solid var(--line); border-radius:14px;
+    padding:15px 18px; margin-bottom:10px;
+  }
+  details[open]{border-color:var(--neon); box-shadow:0 0 24px rgba(255,46,151,.12)}
+  summary{cursor:pointer; font-weight:800; font-size:15.5px; color:#ffe9a8}
+  details p{margin:10px 0 0; font-size:14px; color:#b3a6d4}
+  details p b{color:#fff}
+
+  footer{
+    border-top:1px solid var(--line); padding:30px 0 44px;
+    font-size:13px; color:#8f80b5; text-align:center; background:#0d0620;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="sun"></div>
+  <span class="palm l">🌴</span>
+  <span class="palm r">🌴</span>
+  <span class="palm r2">🌴</span>
+  <div class="grid-floor"></div>
+  <div class="scan"></div>
+  <div class="inner wrap">
+    <span class="kicker">GTA VI</span>
+    <h1>100% <em>прохождение</em><br>трекер</h1>
+    <p class="date">GTA 6 уже вышла — а ты ещё не на 100%?<br>Отмечай, что прошёл, и узнай, сколько осталось. Прогресс сохраняется в браузере.</p>
+  </div>
+</header>
+
+<div class="ticker"><div>
+  <span>Welcome to Leonida</span><span>Vice City</span><span>100% or nothing</span><span>Jason &amp; Lucia</span>
+  <span>Welcome to Leonida</span><span>Vice City</span><span>100% or nothing</span><span>Jason &amp; Lucia</span>
+</div></div>
+
+<main>
+  <section>
+    <div class="wrap">
+      <div class="total">
+        <div class="num" id="totalPct">0%</div>
+        <div class="cap" id="totalCap">выполнено 0 из 0</div>
+        <div class="bar"><div id="totalBar"></div></div>
+      </div>
+      <div class="tools">
+        <button class="btn primary" id="expandAll">Раскрыть всё</button>
+        <button class="btn" id="collapseAll">Свернуть всё</button>
+        <button class="btn" id="hideDone">Скрыть выполненные</button>
+        <button class="btn" id="reset">Сбросить</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap" id="checklists">
+      <h2>Чек-лист</h2>
+      <p class="sub">Списки — заготовка по категориям открытого мира Rockstar: сверь с игрой и подставь свои пункты.</p>
+      <div class="how">
+        <div class="how-item"><span class="how-n">1</span><b>Открой категорию</b><br>Миссии, побочки, коллекции, трофеи — всё что нужно для 100%.</div>
+        <div class="how-item"><span class="how-n">2</span><b>Отмечай сделанное</b><br>Прошёл миссию — поставь галочку. Собрал пакеты — отметь.</div>
+        <div class="how-item"><span class="how-n">3</span><b>Следи за процентом</b><br>Наверху всегда видно, сколько пройдено и что осталось.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gajdy" style="padding-top:8px">
+    <div class="wrap">
+      <h2>🎯 Прохождение миссий</h2>
+      <p class="sub">Гайды по подтверждённым фактам (вики + релизные публикации). Названия сюжетных миссий Rockstar пока не раскрыла — гайды по главам добавим, как только их задокументируют.</p>
+      <div class="faq">
+        <details class="g" open><summary>Структура кампании: 5 глав — как строить прохождение</summary>
+          <ol>
+            <li>Сюжет GTA 6 разбит на <b>пять глав</b>. Названия миссий Rockstar официально не публиковала — ориентируемся по списку в игре.</li>
+            <li>Часть миссий можно проходить за <b>Джейсона или Лючию</b> на выбор, часть — строго за одного из них. Читай брифинг перед стартом.</li>
+            <li>Миссии <b>нельзя переигрывать</b> после прохождения. Зато в игре несколько слотов сохранений — пользуйся ими перед ключевыми развилками.</li>
+            <li>Для 100% нужны миссии + побочные активности + коллекции. Начни отмечать прогресс в чек-листе выше с первой главы.</li>
+          </ol>
+          <div class="g-tip"><b>Совет:</b> держи отдельный слот сохранения перед стартом каждой главы — вернуться и «переиграть» без него не получится.</div>
+        </details>
+        <details class="g"><summary>PTT Youngin$ Illegal Goods Store — как пройти</summary>
+          <p style="margin:8px 0 0"><b>Эксклюзив Ultimate Edition.</b> Рейд на базу одной из самых громких банд Саут-Сайда Вайс-Сити: забери спец-предметы и уникальную контрабанду, затем <b>безопасно уйдм</b>.</p>
+          <ol>
+            <li>Подготовка: запасись аптечками и патронами до входа — внутри добирать снаряжение будет негде.</li>
+            <li>Зачистка базы: двигайся методично, осматривай помещения — предметы разбросаны по всей территории.</li>
+            <li>Собери всё: цель считается выполненной только с полным набором добычи.</li>
+            <li>Отход: главное условие — уйти живым. Не геройствуй на выходе, выбери маршрут заранее.</li>
+          </ol>
+          <div class="g-tip"><b>Совет:</b> припаркуй транспорт у запасного выхода до начала рейда — после тревоги он выручит лучше всего.</div>
+          <figure class="gshot"><img src="img/ptt-1.jpg" alt="Скриншот: рейд на базу банды" loading="lazy" onerror="this.remove()"><figcaption>📷 Твой скриншот: база банды (положи файл img/ptt-1.jpg)</figcaption></figure>
+        </details>
+        <details class="g"><summary>Classic Car Collection — как пройти</summary>
+          <p style="margin:8px 0 0"><b>Эксклюзив Ultimate Edition.</b> Заказ от эксцентричного коллекционера и фиксера <b>Уаймана</b>: найти по всему штату заброшенные классические и недостроенные проект-кары и восстановить их.</p>
+          <ol>
+            <li>Ищи не в центре: заброшенные кары чаще прячутся в сельских районах штата — проверяй сараи, старые гаражи и задворки.</li>
+            <li>Скан локаций: осматривай пустующие постройки за пределами Вайс-Сити — по одному району за заезд, отмечай найденное.</li>
+            <li>Доставляй найденное на восстановление — восстановленный кар переходит в твою коллекцию.</li>
+          </ol>
+          <div class="g-tip"><b>Совет:</b> совмещай охоту за карами с обычными поездками: увидел ржавый силуэт в сарае — заезжай.</div>
+          <figure class="gshot"><img src="img/cars-1.jpg" alt="Скриншот: поиск классических машин" loading="lazy" onerror="this.remove()"><figcaption>📷 Твой скриншот: найденный проект-кар (положи файл img/cars-1.jpg)</figcaption></figure>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="topics" style="padding-top:8px">
+    <div class="wrap">
+      <h2>🔥 Гайды и секреты в сети</h2>
+      <p class="sub">Подбираются автоматически: «как пройти», «где найти», секреты и пасхалки от игровых изданий. Клик — первоисточник.</p>
+      <!--GUIDES:START-->
+<p class="n-updated">Гайды в сети: обновлено автоматически 19.11.2026 (снимок лент)</p>
+<a class="n-item" href="https://www.gamespot.com/articles/how-long-does-it-take-to-fly-across-the-entire-gta-6-map/" target="_blank" rel="noopener"><span class="n-date">18.11</span><span class="n-title">How Long Does It Take To Fly Across The Entire GTA 6 Map?</span><span class="n-src">gamespot.com</span></a>
+<a class="n-item" href="https://www.gamespot.com/articles/gta-6-has-a-hilarious-riff-on-easter-eggs/" target="_blank" rel="noopener"><span class="n-date">18.11</span><span class="n-title">GTA 6 Has A Hilarious Riff On Easter Eggs</span><span class="n-src">gamespot.com</span></a>
+      <!--GUIDES:END-->
+    </div>
+  </section>
+
+  <section id="news" style="padding-top:8px">
+    <div class="wrap">
+      <h2>📡 Новости GTA 6</h2>
+      <p class="sub">Подбираются автоматически из открытых источников. Клик — и читаешь первоисточник.</p>
+      <!--NEWS:START-->
+<p class="n-updated">Обновлено автоматически: 19.11.2026 (снимок лент GameSpot / Eurogamer)</p>
+<a class="n-item" href="https://www.gamespot.com/articles/rockstar-founder-issues-rare-statement-as-gta-6-launches-to-superb-reviews-and-huge-sales/" target="_blank" rel="noopener"><span class="n-date">18.11</span><span class="n-title">Rockstar Founder Issues Rare Statement As GTA 6 Launches To Superb Reviews And Huge Sales</span><span class="n-src">gamespot.com</span></a>
+<a class="n-item" href="https://www.gamespot.com/articles/psn-went-down-sorta-on-gta-6-eve/" target="_blank" rel="noopener"><span class="n-date">18.11</span><img class="n-thumb" src="https://www.gamespot.com/wp-content/uploads/2026/11/Grand-Theft-Auto-VI_20261031155532_.jpg?w=300" alt="" loading="lazy"><span class="n-title">PSN Went Down Sorta On GTA 6 Eve</span><span class="n-src">gamespot.com</span></a>
+<a class="n-item" href="https://www.gamespot.com/articles/how-xboxs-streaming-deal-for-gta-6-could-expand-its-marketshare-by-30/" target="_blank" rel="noopener"><span class="n-date">18.11</span><span class="n-title">How Xbox's Streaming Deal For GTA 6 Could Expand Its Marketshare By 30%</span><span class="n-src">gamespot.com</span></a>
+<a class="n-item" href="https://www.gamespot.com/articles/gta-6-owner-take-twos-stock-explodes-after-high-review-scores-but-its-still-down-massively-this-year/" target="_blank" rel="noopener"><span class="n-date">18.11</span><span class="n-title">GTA 6 Owner Take-Two's Stock Adds Billions After Rave Reviews, But It's Not All Good News</span><span class="n-src">gamespot.com</span></a>
+<a class="n-item" href="https://www.gamespot.com/articles/how-long-does-it-take-to-fly-across-the-entire-gta-6-map/" target="_blank" rel="noopener"><span class="n-date">18.11</span><span class="n-title">How Long Does It Take To Fly Across The Entire GTA 6 Map?</span><span class="n-src">gamespot.com</span></a>
+<a class="n-item" href="https://www.gamespot.com/articles/dont-expect-to-see-vice-city-for-a-long-time-in-gta-6/" target="_blank" rel="noopener"><span class="n-date">18.11</span><span class="n-title">Don't Expect To See Vice City For A Long Time In GTA 6</span><span class="n-src">gamespot.com</span></a>
+<a class="n-item" href="https://www.gamespot.com/articles/bigfoot-is-back-in-gta-6-and-apparently-he-smells-revolting/" target="_blank" rel="noopener"><span class="n-date">18.11</span><span class="n-title">Bigfoot Is Back In GTA 6, And Apparently He Smells Revolting</span><span class="n-src">gamespot.com</span></a>
+<a class="n-item" href="https://www.gamespot.com/articles/kfc-announces-gta-6-promo-where-you-get-a-disc-shaped-piece-of-chicken/" target="_blank" rel="noopener"><span class="n-date">18.11</span><img class="n-thumb" src="https://www.gamespot.com/wp-content/uploads/2026/11/chickendisc.png?w=300" alt="" loading="lazy"><span class="n-title">KFC Announces GTA 6 Promo Where You Get A Disc-Shaped Piece Of Chicken</span><span class="n-src">gamespot.com</span></a>
+      <!--NEWS:END-->
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:8px">
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <p class="sub">Частые вопросы о 100% прохождении.</p>
+      <div class="faq">
+        <details open><summary>Как пройти GTA 6 на 100%?</summary><p>Обычно для 100% в играх Rockstar нужны: все сюжетные миссии, побочные активности, коллекционные предметы, испытания и ряд достижений. Отмечай выполненное здесь — процент считается автоматически.</p></details>
+        <details><summary>Прогресс сохраняется?</summary><p>Да. Отметки хранятся в <b>localStorage</b> твоего браузера — регистрация не нужна. Не чисти данные сайта, если хочешь сохранить прогресс.</p></details>
+        <details><summary>Как перенести прогресс на другое устройство?</summary><p>В следующей версии добавим экспорт кода прогресса. Пока прогресс живёт в браузере устройства.</p></details>
+        <details><summary>Сколько глав в GTA 6?</summary><p>Кампания разделена на <b>пять глав</b>. Названия отдельных миссий Rockstar официально не раскрывала; часть миссий проходится за Джейсона или Лючию на выбор, часть — за конкретного персонажа.</p></details>
+        <details><summary>Вышла ли GTA 6 на ПК?</summary><p>GTA 6 вышла <b>19 ноября 2026</b> на PlayStation 5 и Xbox Series X|S. Дата версии для ПК пока не объявлена.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Фан-проект. Не связан с Rockstar Games и Take-Two Interactive. Все упомянутые торговые марки принадлежат их владельцам.</div>
+</footer>
+
+<script>
+(function(){
+  var DATA = [
+    { title: "🎞 Сюжетные миссии", items: [
+      ["m1","Глава 1 (название уточняется)"],["m2","Глава 2 (название уточняется)"],["m3","Глава 3 (название уточняется)"],
+      ["m4","Глава 4 (название уточняется)"],["m5","Глава 5 — финал (название уточняется)"]
+    ]},
+    { title: "🛺 Побочные активности", items: [
+      ["s1","Угон по заказу (10 машин)"],["s2","Ограбления магазинов (25)"],
+      ["s3","Гонки уличные (все первые места)"],["s4","Дайвинг-точки"],["s5","Дельтаплан/банджи"],
+      ["s6","Стрельбище: золотые медали"],["s7","PTT Youngin$ Illegal Goods Store (Ultimate Edition)"],["s8","Classic Car Collection (Ultimate Edition)"],["s9","Такси/подработки (по мере раскрытия)"]
+    ]},
+    { title: "💎 Коллекции", items: [
+      ["c1","Скрытые пакеты (100)"],["c2","Металлодетектор: клады (30)"],
+      ["c3","Фотодостопримечательности (15)"],["c4","Радиостанции: послушать все"],["c5","Телескопы/смотровые"]
+    ]},
+    { title: "🏆 Достижения", items: [
+      ["a1","Пройти сюжет"],["a2","100% по категориям мира"],["a3","Заработать $1,000,000"],
+      ["a4","Полный гараж"],["a5","Максимум навыка персонажа"],["a6","Без смертей в главе"]
+    ]}
+  ];
+  var KEY = 'gta6-tracker-v1';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ state = {}; }
+  var root = document.getElementById('checklists');
+  var totalPct = document.getElementById('totalPct'), totalCap = document.getElementById('totalCap'), totalBar = document.getElementById('totalBar');
+  var hideDone = false;
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+  DATA.forEach(function(cat, ci){
+    var el = document.createElement('div');
+    el.className = 'cat' + (ci === 0 ? ' open' : '');
+    var html = '<div class="cat-head"><h3>' + cat.title + '</h3><span class="mini" data-mini="'+ci+'">0/0</span></div>' +
+               '<div class="mini-bar"><div data-minibar="'+ci+'"></div></div><div class="items">';
+    cat.items.forEach(function(it){
+      html += '<label class="item" for="chk-'+it[0]+'"><input type="checkbox" id="chk-'+it[0]+'" data-id="'+it[0]+'"><span>'+it[1]+'</span></label>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+    root.appendChild(el);
+    el.querySelector('.cat-head').addEventListener('click', function(){ el.classList.toggle('open'); });
+    el.querySelectorAll('input').forEach(function(inp){
+      inp.addEventListener('change', function(){
+        state[inp.dataset.id] = inp.checked;
+        save(); refresh();
+      });
+    });
+    cat.el = el;
+  });
+  function refresh(){
+    var done = 0, total = 0;
+    DATA.forEach(function(cat, ci){
+      var cDone = 0;
+      cat.items.forEach(function(it){
+        total++;
+        var isDone = !!state[it[0]];
+        var box = cat.el.querySelector('input[data-id="'+it[0]+'"]');
+        if (box){
+          box.checked = isDone;
+          box.closest('.item').classList.toggle('done', isDone);
+          box.closest('.item').style.display = (hideDone && isDone) ? 'none' : '';
+        }
+        if (isDone){ cDone++; done++; }
+      });
+      cat.el.querySelector('[data-mini]').textContent = cDone + '/' + cat.items.length;
+      cat.el.querySelector('[data-minibar]').style.width = (cat.items.length ? cDone/cat.items.length*100 : 0) + '%';
+    });
+    var p = total ? done/total*100 : 0;
+    totalPct.textContent = Math.round(p) + '%';
+    totalCap.textContent = 'выполнено ' + done + ' из ' + total;
+    totalBar.style.width = p + '%';
+  }
+  refresh();
+  document.getElementById('expandAll').onclick = function(){ DATA.forEach(function(c){ c.el.classList.add('open'); }); };
+  document.getElementById('collapseAll').onclick = function(){ DATA.forEach(function(c){ c.el.classList.remove('open'); }); };
+  document.getElementById('hideDone').onclick = function(){
+    hideDone = !hideDone;
+    this.textContent = hideDone ? 'Показать все' : 'Скрыть выполненные';
+    refresh();
+  };
+  document.getElementById('reset').onclick = function(){
+    if (confirm('Сбросить весь прогресс?')){ state = {}; save(); refresh(); }
+  };
+})();
+</script>
+</body>
+</html>
