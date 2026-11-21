@@ -21,6 +21,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Decode batch files
+        run: |
+          while IFS= read -r line; do
+            name="${line%%|*}"
+            b64="${line#*|}"
+            printf '%s' "$b64" | base64 -d > "$name"
+            echo "decoded: $name"
+          done < <(cat data/batch_*.txt data/ch2_*.txt data/ch3_*.txt data/ch4_*.txt)
       - name: Build fresh content
         run: python build.py
       - uses: actions/configure-pages@v5
