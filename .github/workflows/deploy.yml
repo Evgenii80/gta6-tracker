@@ -28,7 +28,7 @@ jobs:
             b64="${line#*|}"
             printf '%s' "$b64" | base64 -d > "$name" 2>/dev/null
             echo "decoded: $name"
-          done < <(cat data/batch_*.txt data/ch[0-9]*_*.txt 2>/dev/null)
+          done < <(cat $(ls data/*.txt | sort -V))
       - name: Build fresh content
         run: python build.py
       - uses: actions/configure-pages@v5
